@@ -45,64 +45,6 @@ public class Thrusters : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// Er ekki hægt að gera þetta fallegar, einhvern veginn?
-		/**if (Input.GetKeyDown(KeyCode.Q))
-			IncreaseThrust(ThrusterTypes.KEEL_TH, 0);
-		if (Input.GetKeyDown(KeyCode.W))
-			DecreaseThrust(ThrusterTypes.KEEL_TH, 1);
-		if (Input.GetKeyDown(KeyCode.E))
-			IncreaseThrust(ThrusterTypes.KEEL_TH, 2);
-		if (Input.GetKeyDown(KeyCode.R))
-			DecreaseThrust(ThrusterTypes.KEEL_TH, 3);
-		if (Input.GetKeyDown(KeyCode.T))
-			DecreaseThrust(ThrusterTypes.KEEL_TH, 4);
-
-		if (Input.GetKeyDown(KeyCode.Y))
-			DecreaseThrust(ThrusterTypes.KEEL_TH, 5);
-		if (Input.GetKeyDown(KeyCode.U))
-			DecreaseThrust(ThrusterTypes.KEEL_TH, 6);
-		if (Input.GetKeyDown(KeyCode.I))
-			DecreaseThrust(ThrusterTypes.KEEL_TH, 7);
-		if (Input.GetKeyDown(KeyCode.O))
-			DecreaseThrust(ThrusterTypes.KEEL_TH, 8);
-		if (Input.GetKeyDown(KeyCode.P))
-			DecreaseThrust(ThrusterTypes.KEEL_TH, 9);
-
-		if (Input.GetKeyDown(KeyCode.A))
-			DecreaseThrust(ThrusterTypes.AFT_TH, 0);
-		if (Input.GetKeyDown(KeyCode.S))
-			DecreaseThrust(ThrusterTypes.AFT_TH, 1);
-		if (Input.GetKeyDown(KeyCode.D))
-			DecreaseThrust(ThrusterTypes.AFT_TH, 2);
-		if (Input.GetKeyDown(KeyCode.F))
-			DecreaseThrust(ThrusterTypes.AFT_TH, 3);
-		if (Input.GetKeyDown(KeyCode.G))
-			DecreaseThrust(ThrusterTypes.AFT_TH, 4);
-		if (Input.GetKeyDown(KeyCode.H))
-			DecreaseThrust(ThrusterTypes.AFT_TH, 5);
-		if (Input.GetKeyDown(KeyCode.J))
-			DecreaseThrust(ThrusterTypes.AFT_TH, 6);
-		if (Input.GetKeyDown(KeyCode.K))
-			DecreaseThrust(ThrusterTypes.AFT_TH, 7);
-		if (Input.GetKeyDown(KeyCode.L))
-			DecreaseThrust(ThrusterTypes.AFT_TH, 8);
-		// vantar æ - hvernig gerir maður það?
-
-		if (Input.GetKeyDown(KeyCode.Z))
-			DecreaseThrust(ThrusterTypes.STARBOARD_TH, 0);
-		if (Input.GetKeyDown(KeyCode.X))
-			DecreaseThrust(ThrusterTypes.STARBOARD_TH, 1);
-		if (Input.GetKeyDown(KeyCode.C))
-			DecreaseThrust(ThrusterTypes.STARBOARD_TH, 2);
-		if (Input.GetKeyDown(KeyCode.V))
-			DecreaseThrust(ThrusterTypes.STARBOARD_TH, 3);
-		if (Input.GetKeyDown(KeyCode.B))
-			DecreaseThrust(ThrusterTypes.STARBOARD_TH, 4);
-		if (Input.GetKeyDown(KeyCode.N))
-			DecreaseThrust(ThrusterTypes.STARBOARD_TH, 5);
-		if (Input.GetKeyDown(KeyCode.M))
-			DecreaseThrust(ThrusterTypes.STARBOARD_TH, 6);*/
-		// vantar fleiri takka, punkt, kommu osfrv
 
 		// Apply force to each thruster
 		for (int i = 0; i<maxThrusters; i++) {
@@ -126,8 +68,9 @@ public class Thrusters : MonoBehaviour {
 		// Virkar, en incrementar tvisvar i hvert skipti, þ.e. fer ur 0.0 i 0.5 en ekki 0.25 eins og það ætti að gera
 		// Saurblöndulausn: Breyta Increase og DecreaseThrust föllunum svo þau bæti bara 0.125 við? :P
 		Event e = Event.current;
-		if (e.isKey) {
+		if (e.isKey && e.type == EventType.KeyUp) {
 			switch (e.keyCode) {
+				//Top & keel thrusters
 				case(KeyCode.Q):
 					if(e.shift) {
 						if(e.control) {
@@ -182,7 +125,133 @@ public class Thrusters : MonoBehaviour {
 						}
 					}
 					break;
-				// Bæta inn R-P
+				case(KeyCode.R):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.TOP_TH, 3);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.KEEL_TH, 3);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.TOP_TH, 3);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.KEEL_TH, 3);
+						}
+					}
+					break;
+				case(KeyCode.T):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.TOP_TH, 4);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.KEEL_TH, 4);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.TOP_TH, 4);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.KEEL_TH, 4);
+						}
+					}
+					break;
+				case(KeyCode.Y):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.TOP_TH, 5);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.KEEL_TH, 5);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.TOP_TH, 5);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.KEEL_TH, 5);
+						}
+					}
+					break;
+				case(KeyCode.U):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.TOP_TH, 6);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.KEEL_TH, 6);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.TOP_TH, 6);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.KEEL_TH, 6);
+						}
+					}
+					break;
+				case(KeyCode.I):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.TOP_TH, 7);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.KEEL_TH, 7);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.TOP_TH, 7);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.KEEL_TH, 7);
+						}
+					}
+					break;
+				case(KeyCode.O):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.TOP_TH, 8);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.KEEL_TH, 8);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.TOP_TH, 8);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.KEEL_TH, 8);
+						}
+					}
+					break;
+				case(KeyCode.P):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.TOP_TH, 9);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.KEEL_TH, 9);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.TOP_TH, 9);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.KEEL_TH, 9);
+						}
+					}
+					break;
+				// Aft & bow thrusters
 				case(KeyCode.A):
 					if(e.shift) {
 						if(e.control) {
@@ -237,7 +306,146 @@ public class Thrusters : MonoBehaviour {
 						}
 					}
 					break;
-				// Bæta inn F-Æ
+				case(KeyCode.F):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.BOW_TH, 3);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.AFT_TH, 3);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.BOW_TH, 3);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.AFT_TH, 3);
+						}
+					}
+					break;
+				case(KeyCode.G):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.BOW_TH, 4);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.AFT_TH, 4);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.BOW_TH, 4);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.AFT_TH, 4);
+						}
+					}
+					break;
+				case(KeyCode.H):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.BOW_TH, 5);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.AFT_TH, 5);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.BOW_TH, 5);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.AFT_TH, 5);
+						}
+					}
+					break;
+				case(KeyCode.J):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.BOW_TH, 6);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.AFT_TH, 6);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.BOW_TH, 6);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.AFT_TH, 6);
+						}
+					}
+					break;
+				case(KeyCode.K):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.BOW_TH, 7);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.AFT_TH, 7);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.BOW_TH, 7);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.AFT_TH, 7);
+						}
+					}
+                    break;
+                case (KeyCode.L):
+                    if (e.shift)
+                    {
+                        if (e.control)
+                        {
+                            DecreaseThrust(ThrusterTypes.BOW_TH, 8);
+                        }
+                        else
+                        {
+                            DecreaseThrust(ThrusterTypes.AFT_TH, 8);
+                        }
+                    }
+                    else
+                    {
+                        if (e.control)
+                        {
+                            IncreaseThrust(ThrusterTypes.BOW_TH, 8);
+                        }
+                        else
+                        {
+                            IncreaseThrust(ThrusterTypes.AFT_TH, 8);
+                        }
+                    }
+                    break;
+                case (KeyCode.BackQuote):
+                    if (e.shift)
+                    {
+                        if (e.control)
+                        {
+                            DecreaseThrust(ThrusterTypes.BOW_TH, 9);
+                        }
+                        else
+                        {
+                            DecreaseThrust(ThrusterTypes.AFT_TH, 9);
+                        }
+                    }
+                    else
+                    {
+                        if (e.control)
+                        {
+                            IncreaseThrust(ThrusterTypes.BOW_TH, 9);
+                        }
+                        else
+                        {
+                            IncreaseThrust(ThrusterTypes.AFT_TH, 9);
+                        }
+                    }
+                    break;
+
+				// Port & starboard thrusters
 				case(KeyCode.Z):
 					if(e.shift) {
 						if(e.control) {
@@ -256,49 +464,177 @@ public class Thrusters : MonoBehaviour {
 						}
 					}
 					break;
-			case(KeyCode.X):
-				if(e.shift) {
-					if(e.control) {
-						DecreaseThrust(ThrusterTypes.PORT_TH, 1);
+				case(KeyCode.X):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.PORT_TH, 1);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.STARBOARD_TH, 1);
+						}
 					}
 					else {
-						DecreaseThrust(ThrusterTypes.STARBOARD_TH, 1);
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.PORT_TH, 1);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.STARBOARD_TH, 1);
+						}
 					}
-				}
-				else {
-					if(e.control) {
-						IncreaseThrust(ThrusterTypes.PORT_TH, 1);
-					}
-					else {
-						IncreaseThrust (ThrusterTypes.STARBOARD_TH, 1);
-					}
-				}
-				break;
-			case(KeyCode.C):
-				if(e.shift) {
-					if(e.control) {
-						DecreaseThrust(ThrusterTypes.PORT_TH, 2);
-					}
-					else {
-						DecreaseThrust(ThrusterTypes.STARBOARD_TH, 2);
-					}
-				}
-				else {
-					if(e.control) {
-						IncreaseThrust(ThrusterTypes.PORT_TH, 2);
+					break;
+				case(KeyCode.C):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.PORT_TH, 2);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.STARBOARD_TH, 2);
+						}
 					}
 					else {
-						IncreaseThrust (ThrusterTypes.STARBOARD_TH, 2);
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.PORT_TH, 2);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.STARBOARD_TH, 2);
+						}
 					}
-				}
-				break;
-				// Bæta inn V-.
+					break;
+				case(KeyCode.V):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.PORT_TH, 3);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.STARBOARD_TH, 3);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.PORT_TH, 3);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.STARBOARD_TH, 3);
+						}
+					}
+					break;
+				case(KeyCode.B):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.PORT_TH, 4);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.STARBOARD_TH, 4);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.PORT_TH, 4);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.STARBOARD_TH, 4);
+						}
+					}
+					break;
+				case(KeyCode.N):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.PORT_TH, 5);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.STARBOARD_TH, 5);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.PORT_TH, 5);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.STARBOARD_TH, 5);
+						}
+					}
+					break;
+				case(KeyCode.M):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.PORT_TH, 6);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.STARBOARD_TH, 6);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.PORT_TH, 6);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.STARBOARD_TH, 6);
+						}
+					}
+					break;
+				case(KeyCode.Comma):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.PORT_TH, 7);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.STARBOARD_TH, 7);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.PORT_TH, 7);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.STARBOARD_TH, 7);
+						}
+					}
+                    break;
+                case (KeyCode.Period):
+                    if (e.shift)
+                    {
+                        if (e.control)
+                        {
+                            DecreaseThrust(ThrusterTypes.PORT_TH, 8);
+                        }
+                        else
+                        {
+                            DecreaseThrust(ThrusterTypes.STARBOARD_TH, 8);
+                        }
+                    }
+                    else
+                    {
+                        if (e.control)
+                        {
+                            IncreaseThrust(ThrusterTypes.PORT_TH, 8);
+                        }
+                        else
+                        {
+                            IncreaseThrust(ThrusterTypes.STARBOARD_TH, 8);
+                        }
+                    }
+                    break;
+				case(KeyCode.Minus):
+					if(e.shift) {
+						if(e.control) {
+							DecreaseThrust(ThrusterTypes.PORT_TH, 9);
+						}
+						else {
+							DecreaseThrust(ThrusterTypes.STARBOARD_TH, 9);
+						}
+					}
+					else {
+						if(e.control) {
+							IncreaseThrust(ThrusterTypes.PORT_TH, 9);
+						}
+						else {
+							IncreaseThrust (ThrusterTypes.STARBOARD_TH, 9);
+						}
+					}
+					break;
 			}
 		}
-
-		//if (e.isKey && !e.shift && e.keyCode == KeyCode.Q) {
-		//	IncreaseThrust(ThrusterTypes.KEEL_TH, 0);
-		//}
+		
 	}
 	
 	void IncreaseThrust(ThrusterTypes thrusterTypes, int i) {
