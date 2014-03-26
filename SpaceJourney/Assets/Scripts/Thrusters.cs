@@ -68,7 +68,7 @@ public class Thrusters : MonoBehaviour {
 		// Virkar, en incrementar tvisvar i hvert skipti, þ.e. fer ur 0.0 i 0.5 en ekki 0.25 eins og það ætti að gera
 		// Saurblöndulausn: Breyta Increase og DecreaseThrust föllunum svo þau bæti bara 0.125 við? :P
 		Event e = Event.current;
-		if (e.isKey) {
+		if (e.isKey && e.type == EventType.KeyUp) {
 			switch (e.keyCode) {
 				//Top & keel thrusters
 				case(KeyCode.Q):
@@ -395,26 +395,55 @@ public class Thrusters : MonoBehaviour {
 							IncreaseThrust (ThrusterTypes.AFT_TH, 7);
 						}
 					}
-					break;
-				case(KeyCode.L):
-					if(e.shift) {
-						if(e.control) {
-							DecreaseThrust(ThrusterTypes.BOW_TH, 8);
-						}
-						else {
-							DecreaseThrust(ThrusterTypes.AFT_TH, 8);
-						}
-					}
-					else {
-						if(e.control) {
-							IncreaseThrust(ThrusterTypes.BOW_TH, 8);
-						}
-						else {
-							IncreaseThrust (ThrusterTypes.AFT_TH, 8);
-						}
-					}
-					break;
-				// Bæta inn Æ - hvernig gerir maður það?
+                    break;
+                case (KeyCode.L):
+                    if (e.shift)
+                    {
+                        if (e.control)
+                        {
+                            DecreaseThrust(ThrusterTypes.BOW_TH, 8);
+                        }
+                        else
+                        {
+                            DecreaseThrust(ThrusterTypes.AFT_TH, 8);
+                        }
+                    }
+                    else
+                    {
+                        if (e.control)
+                        {
+                            IncreaseThrust(ThrusterTypes.BOW_TH, 8);
+                        }
+                        else
+                        {
+                            IncreaseThrust(ThrusterTypes.AFT_TH, 8);
+                        }
+                    }
+                    break;
+                case (KeyCode.BackQuote):
+                    if (e.shift)
+                    {
+                        if (e.control)
+                        {
+                            DecreaseThrust(ThrusterTypes.BOW_TH, 9);
+                        }
+                        else
+                        {
+                            DecreaseThrust(ThrusterTypes.AFT_TH, 9);
+                        }
+                    }
+                    else
+                    {
+                        if (e.control)
+                        {
+                            IncreaseThrust(ThrusterTypes.BOW_TH, 9);
+                        }
+                        else
+                        {
+                            IncreaseThrust(ThrusterTypes.AFT_TH, 9);
+                        }
+                    }
+                    break;
 
 				// Port & starboard thrusters
 				case(KeyCode.Z):
@@ -560,26 +589,49 @@ public class Thrusters : MonoBehaviour {
 							IncreaseThrust (ThrusterTypes.STARBOARD_TH, 7);
 						}
 					}
-					break;
-				case(KeyCode.Period):
+                    break;
+                case (KeyCode.Period):
+                    if (e.shift)
+                    {
+                        if (e.control)
+                        {
+                            DecreaseThrust(ThrusterTypes.PORT_TH, 8);
+                        }
+                        else
+                        {
+                            DecreaseThrust(ThrusterTypes.STARBOARD_TH, 8);
+                        }
+                    }
+                    else
+                    {
+                        if (e.control)
+                        {
+                            IncreaseThrust(ThrusterTypes.PORT_TH, 8);
+                        }
+                        else
+                        {
+                            IncreaseThrust(ThrusterTypes.STARBOARD_TH, 8);
+                        }
+                    }
+                    break;
+				case(KeyCode.Minus):
 					if(e.shift) {
 						if(e.control) {
-							DecreaseThrust(ThrusterTypes.PORT_TH, 8);
+							DecreaseThrust(ThrusterTypes.PORT_TH, 9);
 						}
 						else {
-							DecreaseThrust(ThrusterTypes.STARBOARD_TH, 8);
+							DecreaseThrust(ThrusterTypes.STARBOARD_TH, 9);
 						}
 					}
 					else {
 						if(e.control) {
-							IncreaseThrust(ThrusterTypes.PORT_TH, 8);
+							IncreaseThrust(ThrusterTypes.PORT_TH, 9);
 						}
 						else {
-							IncreaseThrust (ThrusterTypes.STARBOARD_TH, 8);
+							IncreaseThrust (ThrusterTypes.STARBOARD_TH, 9);
 						}
 					}
 					break;
-				// Hvernig tæklar maður þ?
 			}
 		}
 		
