@@ -108,7 +108,7 @@ public class HUD : MonoBehaviour {
 				if(value != 0) {
 					DrawQuad (new Rect(Screen.width-120, 200+(thrCount*60), 100*value, 30), Color.red);
 				}
-				GUI.Label (new Rect(Screen.width-90, 180+(thrCount*60), 40, 20), hotkeysStarboard[thrCount]);
+				GUI.Label (new Rect(Screen.width-70, 180+(thrCount*60), 40, 20), hotkeysStarboard[thrCount]);
 			}
 			thrCount++;
 		}
