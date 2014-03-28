@@ -648,8 +648,12 @@ public class Thrusters : MonoBehaviour {
 					this.BowThrusterValues[i] += 0.25f;
 				break;
 			case(ThrusterTypes.KEEL_TH):
-				if (this.KeelThrusterValues[i] < 1.0f)
-					this.KeelThrusterValues[i] += 0.25f;
+                if (this.KeelThrusterValues[i] < 1.0f) {
+                    this.KeelThrusterValues[i] += 0.25f;
+                    this.KeelThrusters[i].particleEmitter.maxEnergy += 0.25f;
+                    this.KeelThrusters[i].particleEmitter.minEmission += 25.0f;
+                    this.KeelThrusters[i].particleEmitter.maxEmission += 25.0f;
+                }
 				break;
 			case(ThrusterTypes.PORT_TH):
 				if (this.PortThrusterValues[i] < 1.0f)
@@ -660,8 +664,12 @@ public class Thrusters : MonoBehaviour {
 					this.StarboardThrusterValues[i] += 0.25f;
 				break;
 			case(ThrusterTypes.TOP_TH):
-				if (this.TopThrusterValues[i] < 1.0f)
-					this.TopThrusterValues[i] += 0.25f;
+				if (this.TopThrusterValues[i] < 1.0f) {
+                    this.TopThrusterValues[i] += 0.25f;
+                    this.TopThrusters[i].particleEmitter.maxEnergy += 0.25f;
+                    this.TopThrusters[i].particleEmitter.minEmission += 25.0f;
+                    this.TopThrusters[i].particleEmitter.maxEmission += 25.0f;
+                }
 				break;
 		}
 	}
@@ -677,8 +685,12 @@ public class Thrusters : MonoBehaviour {
 					this.BowThrusterValues[i] -= 0.25f;
 				break;
 			case(ThrusterTypes.KEEL_TH):
-				if (this.KeelThrusterValues[i] > 0.0f)
+				if (this.KeelThrusterValues[i] > 0.0f) {
 					this.KeelThrusterValues[i] -= 0.25f;
+                    this.KeelThrusters[i].particleEmitter.maxEnergy -= 0.25f;
+                    this.KeelThrusters[i].particleEmitter.minEmission -= 25.0f;
+                    this.KeelThrusters[i].particleEmitter.maxEmission -= 25.0f;
+                }
 				break;
 			case(ThrusterTypes.PORT_TH):
 				if (this.PortThrusterValues[i] > 0.0f)
@@ -689,8 +701,12 @@ public class Thrusters : MonoBehaviour {
 					this.StarboardThrusterValues[i] -= 0.25f;
 				break;
 			case(ThrusterTypes.TOP_TH):
-				if (this.TopThrusterValues[i] > 0.0f)
-					this.TopThrusterValues[i] -= 0.25f;
+				if (this.TopThrusterValues[i] > 0.0f) {
+                    this.TopThrusterValues[i] -= 0.25f;
+                    this.TopThrusters[i].particleEmitter.maxEnergy -= 0.25f;
+                    this.TopThrusters[i].particleEmitter.minEmission -= 25.0f;
+                    this.TopThrusters[i].particleEmitter.maxEmission -= 25.0f;
+                }
 				break;
 		}
 	}
