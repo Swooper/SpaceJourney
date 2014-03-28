@@ -7,14 +7,21 @@ public class Thrusters : MonoBehaviour {
 	public GameObject[] KeelThrusters;
 	public GameObject[] PortThrusters;
 	public GameObject[] StarboardThrusters;
-	public GameObject[] TopThrusters;
+    public GameObject[] TopThrusters;
 
-	public float[] AftThrusterValues;
-	public float[] BowThrusterValues;
-	public float[] KeelThrusterValues;
-	public float[] PortThrusterValues;
-	public float[] StarboardThrusterValues;
-	public float[] TopThrusterValues;
+    public float[] AftThrusterValues;
+    public float[] BowThrusterValues;
+    public float[] KeelThrusterValues;
+    public float[] PortThrusterValues;
+    public float[] StarboardThrusterValues;
+    public float[] TopThrusterValues;
+
+    public float[] AftThrusterScales;
+    public float[] BowThrusterScales;
+    public float[] KeelThrusterScales;
+    public float[] PortThrusterScales;
+    public float[] StarboardThrusterScales;
+    public float[] TopThrusterScales;
 
 	public float Scale;
 
@@ -31,14 +38,32 @@ public class Thrusters : MonoBehaviour {
 		KeelThrusters = new GameObject[maxThrusters];
 		PortThrusters = new GameObject[maxThrusters];
 		StarboardThrusters = new GameObject[maxThrusters];
-		TopThrusters = new GameObject[maxThrusters];
+        TopThrusters = new GameObject[maxThrusters];
 
-		AftThrusterValues = new float[maxThrusters];
-		BowThrusterValues = new float[maxThrusters];
-		KeelThrusterValues = new float[maxThrusters];
-		PortThrusterValues = new float[maxThrusters];
-		StarboardThrusterValues = new float[maxThrusters];
-		TopThrusterValues = new float[maxThrusters];
+        AftThrusterValues = new float[maxThrusters];
+        BowThrusterValues = new float[maxThrusters];
+        KeelThrusterValues = new float[maxThrusters];
+        PortThrusterValues = new float[maxThrusters];
+        StarboardThrusterValues = new float[maxThrusters];
+        TopThrusterValues = new float[maxThrusters];
+
+        AftThrusterScales = new float[maxThrusters];
+        BowThrusterScales = new float[maxThrusters];
+        KeelThrusterScales = new float[maxThrusters];
+        PortThrusterScales = new float[maxThrusters];
+        StarboardThrusterScales = new float[maxThrusters];
+        TopThrusterScales = new float[maxThrusters];
+
+        for (int i = 0; i < maxThrusters; i++) {
+            AftThrusterScales[i] = 1.0f;
+            BowThrusterScales[i] = 1.0f;
+            KeelThrusterScales[i] = 1.0f;
+            PortThrusterScales[i] = 1.0f;
+            StarboardThrusterScales[i] = 1.0f;
+            TopThrusterScales[i] = 1.0f;
+        }
+
+        this.AftThrusterScales[4] = 100f;
 
 		FindThrusters ();
 	}
@@ -46,22 +71,25 @@ public class Thrusters : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+	}
+
+    void FixedUpdate() {
 		// Apply force to each thruster
 		for (int i = 0; i<maxThrusters; i++) {
 			if(AftThrusters[i] != null)
-				this.AftThrusters [i].rigidbody.AddForce (-this.AftThrusters[i].transform.forward * this.Scale * this.AftThrusterValues[i]);
+				this.AftThrusters[i].rigidbody.AddForce(-this.AftThrusters[i].transform.forward * this.Scale * this.AftThrusterValues[i] * this.AftThrusterScales[i]);
 			if(BowThrusters[i] != null)
-				this.BowThrusters [i].rigidbody.AddForce (-this.BowThrusters[i].transform.forward * this.Scale * this.BowThrusterValues[i]);
+                this.BowThrusters[i].rigidbody.AddForce(-this.BowThrusters[i].transform.forward * this.Scale * this.BowThrusterValues[i] * this.BowThrusterScales[i]);
 			if(KeelThrusters[i] != null)
-				this.KeelThrusters [i].rigidbody.AddForce (-this.KeelThrusters[i].transform.forward * this.Scale * this.KeelThrusterValues[i]);
+                this.KeelThrusters[i].rigidbody.AddForce(-this.KeelThrusters[i].transform.forward * this.Scale * this.KeelThrusterValues[i] * this.KeelThrusterScales[i]);
 			if(PortThrusters[i] != null)
-				this.PortThrusters [i].rigidbody.AddForce (-this.PortThrusters[i].transform.forward * this.Scale * this.PortThrusterValues[i]);
+                this.PortThrusters[i].rigidbody.AddForce(-this.PortThrusters[i].transform.forward * this.Scale * this.PortThrusterValues[i] * this.PortThrusterScales[i]);
 			if(StarboardThrusters[i] != null)
-				this.StarboardThrusters [i].rigidbody.AddForce (-this.StarboardThrusters[i].transform.forward * this.Scale * this.StarboardThrusterValues[i]);
+                this.StarboardThrusters[i].rigidbody.AddForce(-this.StarboardThrusters[i].transform.forward * this.Scale * this.StarboardThrusterValues[i] * this.StarboardThrusterScales[i]);
 			if(TopThrusters[i] != null)
-				this.TopThrusters [i].rigidbody.AddForce (-this.TopThrusters[i].transform.forward * this.Scale * this.TopThrusterValues[i]);
+                this.TopThrusters[i].rigidbody.AddForce(-this.TopThrusters[i].transform.forward * this.Scale * this.TopThrusterValues[i] * this.TopThrusterScales[i]);
 		}
-	}
+    }
 
 	void OnGUI () {
 		// Af einhverjum astæðum þarf þessi koði að vera her en ekki i Update()
@@ -640,12 +668,20 @@ public class Thrusters : MonoBehaviour {
 	void IncreaseThrust(ThrusterTypes thrusterTypes, int i) {
 		switch (thrusterTypes) {
 			case(ThrusterTypes.AFT_TH):
-				if (this.AftThrusterValues[i] < 1.0f)
+				if (this.AftThrusterValues[i] < 1.0f) {
 					this.AftThrusterValues[i] += 0.25f;
+                    this.AftThrusters[i].particleEmitter.maxEnergy += 0.25f;
+                    this.AftThrusters[i].particleEmitter.minEmission += 25.0f;
+                    this.AftThrusters[i].particleEmitter.maxEmission += 25.0f;
+                }
 				break;
 			case(ThrusterTypes.BOW_TH):
-				if (this.BowThrusterValues[i] < 1.0f)
+				if (this.BowThrusterValues[i] < 1.0f) {
 					this.BowThrusterValues[i] += 0.25f;
+                    this.BowThrusters[i].particleEmitter.maxEnergy += 0.25f;
+                    this.BowThrusters[i].particleEmitter.minEmission += 25.0f;
+                    this.BowThrusters[i].particleEmitter.maxEmission += 25.0f;
+                }
 				break;
 			case(ThrusterTypes.KEEL_TH):
                 if (this.KeelThrusterValues[i] < 1.0f) {
@@ -656,12 +692,20 @@ public class Thrusters : MonoBehaviour {
                 }
 				break;
 			case(ThrusterTypes.PORT_TH):
-				if (this.PortThrusterValues[i] < 1.0f)
+				if (this.PortThrusterValues[i] < 1.0f) {
 					this.PortThrusterValues[i] += 0.25f;
+                    this.PortThrusters[i].particleEmitter.maxEnergy += 0.25f;
+                    this.PortThrusters[i].particleEmitter.minEmission += 25.0f;
+                    this.PortThrusters[i].particleEmitter.maxEmission += 25.0f;
+                }
 				break;
 			case(ThrusterTypes.STARBOARD_TH):
-				if (this.StarboardThrusterValues[i] < 1.0f)
+				if (this.StarboardThrusterValues[i] < 1.0f) {
 					this.StarboardThrusterValues[i] += 0.25f;
+                    this.StarboardThrusters[i].particleEmitter.maxEnergy += 0.25f;
+                    this.StarboardThrusters[i].particleEmitter.minEmission += 25.0f;
+                    this.StarboardThrusters[i].particleEmitter.maxEmission += 25.0f;
+                }
 				break;
 			case(ThrusterTypes.TOP_TH):
 				if (this.TopThrusterValues[i] < 1.0f) {
@@ -677,12 +721,20 @@ public class Thrusters : MonoBehaviour {
 	void DecreaseThrust(ThrusterTypes thrusterTypes, int i) {
 		switch (thrusterTypes) {
 			case(ThrusterTypes.AFT_TH):
-				if (this.AftThrusterValues[i] > 0.0f)
+				if (this.AftThrusterValues[i] > 0.0f) {
 					this.AftThrusterValues[i] -= 0.25f;
+                    this.AftThrusters[i].particleEmitter.maxEnergy -= 0.25f;
+                    this.AftThrusters[i].particleEmitter.minEmission -= 25.0f;
+                    this.AftThrusters[i].particleEmitter.maxEmission -= 25.0f;
+                }
 				break;
 			case(ThrusterTypes.BOW_TH):
-				if (this.BowThrusterValues[i] > 0.0f)
+				if (this.BowThrusterValues[i] > 0.0f) {
 					this.BowThrusterValues[i] -= 0.25f;
+                    this.BowThrusters[i].particleEmitter.maxEnergy -= 0.25f;
+                    this.BowThrusters[i].particleEmitter.minEmission -= 25.0f;
+                    this.BowThrusters[i].particleEmitter.maxEmission -= 25.0f;
+                }
 				break;
 			case(ThrusterTypes.KEEL_TH):
 				if (this.KeelThrusterValues[i] > 0.0f) {
@@ -693,12 +745,20 @@ public class Thrusters : MonoBehaviour {
                 }
 				break;
 			case(ThrusterTypes.PORT_TH):
-				if (this.PortThrusterValues[i] > 0.0f)
+				if (this.PortThrusterValues[i] > 0.0f) {
 					this.PortThrusterValues[i] -= 0.25f;
+                    this.PortThrusters[i].particleEmitter.maxEnergy -= 0.25f;
+                    this.PortThrusters[i].particleEmitter.minEmission -= 25.0f;
+                    this.PortThrusters[i].particleEmitter.maxEmission -= 25.0f;
+                }
 				break;
 			case(ThrusterTypes.STARBOARD_TH):
-				if (this.StarboardThrusterValues[i] > 0.0f)
+				if (this.StarboardThrusterValues[i] > 0.0f) {
 					this.StarboardThrusterValues[i] -= 0.25f;
+                    this.StarboardThrusters[i].particleEmitter.maxEnergy -= 0.25f;
+                    this.StarboardThrusters[i].particleEmitter.minEmission -= 25.0f;
+                    this.StarboardThrusters[i].particleEmitter.maxEmission -= 25.0f;
+                }
 				break;
 			case(ThrusterTypes.TOP_TH):
 				if (this.TopThrusterValues[i] > 0.0f) {
