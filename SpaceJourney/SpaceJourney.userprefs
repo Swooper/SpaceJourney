@@ -2,11 +2,13 @@
   <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Thrusters.cs">
     <Files>
-      <File FileName="Assets\Scripts\Thrusters.cs" Line="54" Column="41" />
+      <File FileName="Assets\Scripts\Thrusters.cs" Line="66" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="E:\Users\Valdi\Documents\Unity Projects\SpaceJourney\SpaceJourney\Assets\Scripts\Thrusters.cs" line="34" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
