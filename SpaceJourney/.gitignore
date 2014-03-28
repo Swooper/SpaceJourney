@@ -1,3 +1,15 @@
 Library/
 obj/
 SpaceJourney.userprefs
+ProjectSettings/
+Temp/
+Assembly-CSharp.csproj
+Assembly-CSharp-firstpass.csproj
+Assembly-CSharp-firstpass-vs.csproj
+Assembly-CSharp-vs.csproj
+Assembly-UnityScript-firstpass.unityproj
+Assembly-UnityScript-firstpass-vs.unityproj
+SpaceJourney.sln
+SpaceJourney.userprefs
+SpaceJourney-csharp.sln
+SpaceJourney-csharp.v11.suo
