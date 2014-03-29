@@ -27,6 +27,22 @@ public class CameraControl : MonoBehaviour {
         if (rigidbody)
             rigidbody.freezeRotation = true;
 	}
+
+	void Update() {
+	}
+
+	void OnGUI() {
+		RaycastHit hit;
+		// Ray selected = new Ray(transform.position, transform.forward+transform.up);
+		// Ray selected = Camera.main. ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
+		Ray selected = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if (Physics.Raycast(selected, out hit, 100.0f))
+		{
+			if (hit.collider.tag == "Thruster") {
+				GUI.Button(new Rect(10, 70, 500, 30), hit.collider.gameObject.name);
+			}
+		}
+	}
 	
 	// Update is called once per frame
     void FixedUpdate() {

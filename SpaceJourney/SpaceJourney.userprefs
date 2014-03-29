@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Thrusters.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraControl.cs">
     <Files>
-      <File FileName="Assets\Scripts\Thrusters.cs" Line="66" Column="39" />
+      <File FileName="Assets\Scripts\Thrusters.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraControl.cs" Line="42" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
