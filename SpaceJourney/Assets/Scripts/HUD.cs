@@ -2,10 +2,6 @@
 using System.Collections;
 
 public class HUD : MonoBehaviour {
-
-	
-	private Texture2D texture;
-
 	private Thrusters thrusters;
 
 	private string[] hotkeysAft = {"A","S","D","F","G","H","J","K","L","Æ"};
@@ -22,21 +18,16 @@ public class HUD : MonoBehaviour {
 	private bool[] highlightStarboard = {false, false, false, false, false, false, false, false, false, false};
 	private bool[] highlightTop = {false, false, false, false, false, false, false, false, false, false};
 
+	private Texture2D texture;
 	private Color ColorMainHUD = Color.gray;
 	private Color ColorGaugeBackground = Color.black;
 	private Color ColorGaugeFill = Color.red;
 	private Color ColorHUDHighlight = Color.white;
 
-	Texture2D texture;
-
 	// Use this for initialization
 	void Start () {
 		thrusters = GameObject.Find ("SpaceShip").GetComponent<Thrusters>();
-<<<<<<< HEAD
-		this.texture = new Texture2D(1, 1);
-=======
 		texture = new Texture2D(1, 1);
->>>>>>> 5eadea29acc1c966e116ce7f95ca47262aa8b58f
 	}
 	
 	// Update is called once per frame
@@ -124,7 +115,7 @@ public class HUD : MonoBehaviour {
 		// Draw port thrusters HUD
 		thrCount = 0;
 		DrawQuad(new Rect(0, 160, 140, 20), ColorMainHUD);
-        GUI.Label(new Rect(0, 160, 140, 20), "Port thrusters");
+        GUI.Label(new Rect(30, 160, 140, 20), "Port thrusters");
 		foreach(GameObject thruster in thrusters.PortThrusters) {
 			if(thruster == null) {
 				break;
@@ -150,7 +141,7 @@ public class HUD : MonoBehaviour {
 		// Draw starboard thrusters HUD
 		thrCount = 0;
 		DrawQuad(new Rect(Screen.width-140, 160, 140, 20), ColorMainHUD);
-		GUI.Label(new Rect(Screen.width-140, 160, 140, 20), "Starboard thrusters");
+		GUI.Label(new Rect(Screen.width-125, 160, 140, 20), "Starboard thrusters");
 		foreach(GameObject thruster in thrusters.StarboardThrusters) {
 			if(thruster == null) {
 				break;
@@ -202,13 +193,8 @@ public class HUD : MonoBehaviour {
 	// This function courtesy of kblood, from 
 	// http://forum.unity3d.com/threads/116348-Draw-a-simple-rectangle-filled-with-a-color
 	void DrawQuad(Rect position, Color color) {
-<<<<<<< HEAD
-		this.texture.SetPixel(0,0,color);
-		this.texture.Apply();
-=======
 		texture.SetPixel(0,0,color);
 		texture.Apply();
->>>>>>> 5eadea29acc1c966e116ce7f95ca47262aa8b58f
 		GUI.skin.box.normal.background = texture;
 		GUI.Box(position, GUIContent.none);
 	}
@@ -240,21 +226,11 @@ public class HUD : MonoBehaviour {
 	}
 
 	void UnHighlightThruster(string thrusterName) {
-
+		Debug.Log ("Unhighlighting " + thrusterName);
 		string[] split = thrusterName.Split('_');
 		string position = split[0];
 		int number = int.Parse(split[1]);
 		switch(position){
-			case("all"):
-				for(int i = 0; i<thrusters.maxThrusters; i++) {
-					highlightAft[i] = false;
-					highlightBow[i] = false;
-					highlightKeel[i] = false;
-					highlightPort[i] = false;
-					highlightStarboard[i] = false;
-					highlightTop[i] = false;
-				}
-				break;
 			case("AftThruster"):
 				highlightAft[number]=false;
 				break;

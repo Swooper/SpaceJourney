@@ -25,8 +25,6 @@ public class SceneMenu : MonoBehaviour {
 
 	void OnGUI() {
 		if (this.showMenu) {
-			if (GUI.Button(new Rect(Screen.width/2 -100, Screen.height/2 -25-90, 200, 50), "Box"))
-				Application.LoadLevel("SimpleThrusters");
 			if (GUI.Button(new Rect(Screen.width/2 -100, Screen.height/2 -25-30, 200, 50), "Flying Brick"))
 				Application.LoadLevel("FlyingBrick");
 			if (GUI.Button(new Rect(Screen.width/2 -100, Screen.height/2 -25+30, 200, 50), "Cruiser"))

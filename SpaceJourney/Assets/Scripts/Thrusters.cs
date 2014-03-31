@@ -54,16 +54,16 @@ public class Thrusters : MonoBehaviour {
         StarboardThrusterScales = new float[maxThrusters];
         TopThrusterScales = new float[maxThrusters];
 
-        for (int i = 0; i < maxThrusters; i++) {
-            AftThrusterScales[i] = 1.0f;
-            BowThrusterScales[i] = 1.0f;
-            KeelThrusterScales[i] = 1.0f;
-            PortThrusterScales[i] = 1.0f;
-            StarboardThrusterScales[i] = 1.0f;
-            TopThrusterScales[i] = 1.0f;
-        }
+		ThrusterScaling scaling = GameObject.Find ("ThrusterScaling").GetComponent<ThrusterScaling> ();
 
-        this.AftThrusterScales[4] = 100f;
+        for (int i = 0; i < maxThrusters; i++) {
+            AftThrusterScales[i] = scaling.aftThrusterScaling[i];
+            BowThrusterScales[i] = scaling.bowThrusterScaling[i];
+            KeelThrusterScales[i] = scaling.keelThrusterScaling[i];
+            PortThrusterScales[i] = scaling.portThrusterScaling[i];
+            StarboardThrusterScales[i] = scaling.starboardThrusterScaling[i];
+            TopThrusterScales[i] = scaling.topThrusterScaling[i];
+        }
 
 		FindThrusters ();
 	}

@@ -18,7 +18,7 @@ public class CameraControl : MonoBehaviour {
     public float scrollMaxLimit = 20.0f;// The maximum allowed scroll distance
 
 	private GameObject HUD;
-	private RaycastHit LastHit;
+	private GameObject LastHit;
 
 	// Use this for initialization
 	void Start () {
@@ -43,15 +43,27 @@ public class CameraControl : MonoBehaviour {
 		Ray selected = Camera.main.ScreenPointToRay(Input.mousePosition);
 		if (Physics.Raycast(selected, out hit, 100.0f))
 		{
+			Debug.Log ("Hit");
 			if (hit.collider.tag == "Thruster") {
+				Debug.Log ("Thruster");
 				GUI.Button(new Rect(Screen.width/2 - 70, 145, 140, 30), hit.collider.gameObject.name);
 				HUD.SendMessage("HighlightThruster", hit.collider.gameObject.name);
-				if(hit.collider.gameObject.name == LastHit.collider.gameObject.name) {
-					HUD.SendMessage("UnHighlightThruster", LastHit.collider.gameObject.name);
+				if(LastHit) {
+					Debug.Log ("LastHit");
+					if(hit.collider.gameObject.name != LastHit.name) {
+						Debug.Log ("Sending Unhighlight");
+						HUD.SendMessage("UnHighlightThruster", LastHit.name);
+					}
 				}
-				LastHit = hit;
+				LastHit = hit.collider.gameObject;
 			}
-
+		}
+		else {
+			Debug.Log ("Miss");
+			if(LastHit) {
+				HUD.SendMessage("UnHighlightThruster", LastHit.name);
+				LastHit = null;
+			}
 		}
 	}
 	
