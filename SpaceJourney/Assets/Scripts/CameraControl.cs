@@ -50,7 +50,7 @@ public class CameraControl : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-    void FixedUpdate() {
+    void LateUpdate() {
         // Check if the player presses or releases the right mouse button
         if (Input.GetMouseButtonDown(1))
             Screen.lockCursor = true;

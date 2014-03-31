@@ -70,27 +70,33 @@ public class Thrusters : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 	}
 
-    void FixedUpdate() {
+	void LateUpdate() {
+	}
+	
+	void FixedUpdate() {
+		// Check for the panic button
+		if (Input.GetKeyDown(KeyCode.Space))
+			Panic();
+
 		// Apply force to each thruster
 		for (int i = 0; i<maxThrusters; i++) {
 			if(AftThrusters[i] != null)
 				this.AftThrusters[i].rigidbody.AddForce(-this.AftThrusters[i].transform.forward * this.Scale * this.AftThrusterValues[i] * this.AftThrusterScales[i]);
 			if(BowThrusters[i] != null)
-                this.BowThrusters[i].rigidbody.AddForce(-this.BowThrusters[i].transform.forward * this.Scale * this.BowThrusterValues[i] * this.BowThrusterScales[i]);
+				this.BowThrusters[i].rigidbody.AddForce(-this.BowThrusters[i].transform.forward * this.Scale * this.BowThrusterValues[i] * this.BowThrusterScales[i]);
 			if(KeelThrusters[i] != null)
-                this.KeelThrusters[i].rigidbody.AddForce(-this.KeelThrusters[i].transform.forward * this.Scale * this.KeelThrusterValues[i] * this.KeelThrusterScales[i]);
+				this.KeelThrusters[i].rigidbody.AddForce(-this.KeelThrusters[i].transform.forward * this.Scale * this.KeelThrusterValues[i] * this.KeelThrusterScales[i]);
 			if(PortThrusters[i] != null)
-                this.PortThrusters[i].rigidbody.AddForce(-this.PortThrusters[i].transform.forward * this.Scale * this.PortThrusterValues[i] * this.PortThrusterScales[i]);
+				this.PortThrusters[i].rigidbody.AddForce(-this.PortThrusters[i].transform.forward * this.Scale * this.PortThrusterValues[i] * this.PortThrusterScales[i]);
 			if(StarboardThrusters[i] != null)
-                this.StarboardThrusters[i].rigidbody.AddForce(-this.StarboardThrusters[i].transform.forward * this.Scale * this.StarboardThrusterValues[i] * this.StarboardThrusterScales[i]);
+				this.StarboardThrusters[i].rigidbody.AddForce(-this.StarboardThrusters[i].transform.forward * this.Scale * this.StarboardThrusterValues[i] * this.StarboardThrusterScales[i]);
 			if(TopThrusters[i] != null)
-                this.TopThrusters[i].rigidbody.AddForce(-this.TopThrusters[i].transform.forward * this.Scale * this.TopThrusterValues[i] * this.TopThrusterScales[i]);
+				this.TopThrusters[i].rigidbody.AddForce(-this.TopThrusters[i].transform.forward * this.Scale * this.TopThrusterValues[i] * this.TopThrusterScales[i]);
 		}
-    }
-
+	}
+	
 	void OnGUI () {
 		// Af einhverjum astæðum þarf þessi koði að vera her en ekki i Update()
 		Event e = Event.current;
@@ -799,5 +805,72 @@ public class Thrusters : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void Panic() {
+		// Set thrusters
+		for (int i = 0; i < maxThrusters; i++) {
+			if (this.AftThrusters[i] != null) {
+				AftThrusterValues[i] = 0.0f;
+				this.AftThrusters[i].particleEmitter.maxEnergy = 0.0f;
+				this.AftThrusters[i].particleEmitter.minEmission = 0.0f;
+				this.AftThrusters[i].particleEmitter.maxEmission = 0.0f;
+				this.AftThrusters[i].rigidbody.velocity = Vector3.zero;
+				this.AftThrusters[i].rigidbody.angularVelocity = Vector3.zero;
+				this.AftThrusters[i].rigidbody.Sleep();
+			}
+			if (this.BowThrusters[i] != null) {
+				BowThrusterValues[i] = 0.0f;
+				this.BowThrusters[i].particleEmitter.maxEnergy = 0.0f;
+				this.BowThrusters[i].particleEmitter.minEmission = 0.0f;
+				this.BowThrusters[i].particleEmitter.maxEmission = 0.0f;
+				this.BowThrusters[i].rigidbody.velocity = Vector3.zero;
+				this.BowThrusters[i].rigidbody.angularVelocity = Vector3.zero;
+				this.BowThrusters[i].rigidbody.Sleep();
+			}
+			if (this.KeelThrusters[i] != null) {
+				KeelThrusterValues[i] = 0.0f;
+				this.KeelThrusters[i].particleEmitter.maxEnergy = 0.0f;
+				this.KeelThrusters[i].particleEmitter.minEmission = 0.0f;
+				this.KeelThrusters[i].particleEmitter.maxEmission = 0.0f;
+				this.KeelThrusters[i].rigidbody.velocity = Vector3.zero;
+				this.KeelThrusters[i].rigidbody.angularVelocity = Vector3.zero;
+				this.KeelThrusters[i].rigidbody.Sleep();
+			}
+			if (this.PortThrusters[i] != null) {
+				PortThrusterValues[i] = 0.0f;
+				this.PortThrusters[i].particleEmitter.maxEnergy = 0.0f;
+				this.PortThrusters[i].particleEmitter.minEmission = 0.0f;
+				this.PortThrusters[i].particleEmitter.maxEmission = 0.0f;
+				this.PortThrusters[i].rigidbody.velocity = Vector3.zero;
+				this.PortThrusters[i].rigidbody.angularVelocity = Vector3.zero;
+				this.PortThrusters[i].rigidbody.Sleep();
+			}
+			if (this.StarboardThrusters[i] != null) {
+				StarboardThrusterValues[i] = 0.0f;
+				this.StarboardThrusters[i].particleEmitter.maxEnergy = 0.0f;
+				this.StarboardThrusters[i].particleEmitter.minEmission = 0.0f;
+				this.StarboardThrusters[i].particleEmitter.maxEmission = 0.0f;
+				this.StarboardThrusters[i].rigidbody.velocity = Vector3.zero;
+				this.StarboardThrusters[i].rigidbody.angularVelocity = Vector3.zero;
+				this.StarboardThrusters[i].rigidbody.Sleep();
+			}
+			if (this.TopThrusters[i] != null) {
+				TopThrusterValues[i] = 0.0f;
+				this.TopThrusters[i].particleEmitter.maxEnergy = 0.0f;
+				this.TopThrusters[i].particleEmitter.minEmission = 0.0f;
+				this.TopThrusters[i].particleEmitter.maxEmission = 0.0f;
+				this.TopThrusters[i].rigidbody.velocity = Vector3.zero;
+				this.TopThrusters[i].rigidbody.angularVelocity = Vector3.zero;
+				this.TopThrusters[i].rigidbody.Sleep();
+			}
+		}
+		// Reset the ships velocity
+		gameObject.rigidbody.velocity = Vector3.zero;
+		gameObject.rigidbody.angularVelocity = Vector3.zero;
+		gameObject.rigidbody.Sleep();
+		
+		// Reset the ships rotation
+		gameObject.transform.rotation = Quaternion.identity;
 	}
 }

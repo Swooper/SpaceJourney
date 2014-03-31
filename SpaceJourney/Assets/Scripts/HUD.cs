@@ -3,6 +3,9 @@ using System.Collections;
 
 public class HUD : MonoBehaviour {
 
+	
+	private Texture2D texture;
+
 	private Thrusters thrusters;
 
 	private string[] hotkeysAft = {"A","S","D","F","G","H","J","K","L","Æ"};
@@ -22,6 +25,7 @@ public class HUD : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		thrusters = GameObject.Find ("SpaceShip").GetComponent<Thrusters>();
+		this.texture = new Texture2D(1, 1);
 	}
 	
 	// Update is called once per frame
@@ -187,9 +191,8 @@ public class HUD : MonoBehaviour {
 	// This function courtesy of kblood, from 
 	// http://forum.unity3d.com/threads/116348-Draw-a-simple-rectangle-filled-with-a-color
 	void DrawQuad(Rect position, Color color) {
-		Texture2D texture = new Texture2D(1, 1);
-		texture.SetPixel(0,0,color);
-		texture.Apply();
+		this.texture.SetPixel(0,0,color);
+		this.texture.Apply();
 		GUI.skin.box.normal.background = texture;
 		GUI.Box(position, GUIContent.none);
 	}
