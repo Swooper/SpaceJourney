@@ -12,6 +12,13 @@ public class HUD : MonoBehaviour {
 	private string[] hotkeysStarboard = {"Z","X","C","V","B","N","M",",",".","Þ"};
 	private string[] hotkeysTop = {"Ctrl+Q","Ctrl+W","Ctrl+E","Ctrl+R","Ctrl+T","Ctrl+Y","Ctrl+U","Ctrl+I","Ctrl+O","Ctrl+P"};
 
+	private bool[] highlightAft = {false, false, false, false, false, false, false, false, false, false};
+	private bool[] highlightBow = {false, false, false, false, false, false, false, false, false, false};
+	private bool[] highlightKeel = {false, false, false, false, false, false, false, false, false, false};
+	private bool[] highlightPort = {false, false, false, false, false, false, false, false, false, false};
+	private bool[] highlightStarboard = {false, false, false, false, false, false, false, false, false, false};
+	private bool[] highlightTop = {false, false, false, false, false, false, false, false, false, false};
+
 	// Use this for initialization
 	void Start () {
 		thrusters = GameObject.Find ("SpaceShip").GetComponent<Thrusters>();
@@ -30,7 +37,13 @@ public class HUD : MonoBehaviour {
 				break;
 			}
 			else {
-				DrawQuad(new Rect(800+(thrCount*50), Screen.height-140, 50, 140), Color.grey);
+				if(highlightAft[thrCount]) {
+					// Find way to use other colours...
+					DrawQuad(new Rect(800+(thrCount*50), Screen.height-140, 50, 140), Color.white);
+				}
+				else {
+					DrawQuad(new Rect(800+(thrCount*50), Screen.height-140, 50, 140), Color.grey);
+				}
 				DrawQuad(new Rect(810+(thrCount*50), Screen.height-120, 30, 100), Color.black);
 				float value = thrusters.AftThrusterValues[thrCount];
 				if(value != 0) {
@@ -40,6 +53,8 @@ public class HUD : MonoBehaviour {
 			}
 			thrCount++;
 		}
+		GUI.Label (new Rect( (thrCount * 25)+760, Screen.height-20, 100, 20), "Aft thrusters");
+
 
 		// Draw bow thrusters HUD
 		thrCount = 0;
@@ -48,7 +63,13 @@ public class HUD : MonoBehaviour {
 				break;
 			}
 			else {
-				DrawQuad(new Rect(800+(thrCount*50), 0, 50, 140), Color.grey);
+				if(highlightBow[thrCount]) {
+					// Find way to use other colours...
+					DrawQuad(new Rect(800+(thrCount*50), 0, 50, 140), Color.white);
+				}
+				else {
+					DrawQuad(new Rect(800+(thrCount*50), 0, 50, 140), Color.grey);
+				}
 				DrawQuad(new Rect(810+(thrCount*50), 20, 30, 100), Color.black);
 				float value = thrusters.BowThrusterValues[thrCount];
 				if(value != 0) {
@@ -58,6 +79,7 @@ public class HUD : MonoBehaviour {
 			}
 			thrCount++;
 		}
+		GUI.Label (new Rect( (thrCount * 25)+760, 120, 100, 20), "Bow thrusters");
 
 		// Draw keel thrusters HUD
 		thrCount = 0;
@@ -66,7 +88,13 @@ public class HUD : MonoBehaviour {
 				break;
 			}
 			else {
-				DrawQuad(new Rect(0+(thrCount*50), Screen.height-140, 50, 140), Color.grey);
+				if(highlightKeel[thrCount]) {
+					// Find way to use other colours...
+					DrawQuad(new Rect(0+(thrCount*50), Screen.height-140, 50, 140), Color.white);
+				}
+				else {
+					DrawQuad(new Rect(0+(thrCount*50), Screen.height-140, 50, 140), Color.grey);
+				}
 				DrawQuad(new Rect(10+(thrCount*50), Screen.height-120, 30, 100), Color.black);
 				float value = thrusters.KeelThrusterValues[thrCount];
 				if(value != 0) {
@@ -76,15 +104,24 @@ public class HUD : MonoBehaviour {
 			}
 			thrCount++;
 		}
+		GUI.Label (new Rect( (thrCount * 25)-40, Screen.height-20, 100, 20), "Keel thrusters");
 
 		// Draw port thrusters HUD
 		thrCount = 0;
+		DrawQuad(new Rect(0, 160, 140, 20), Color.grey);
+        GUI.Label(new Rect(0, 160, 140, 20), "Port thrusters");
 		foreach(GameObject thruster in thrusters.PortThrusters) {
 			if(thruster == null) {
 				break;
 			}
 			else {
-				DrawQuad(new Rect(0, 180+(thrCount*60), 140, 60), Color.grey);
+				if(highlightPort[thrCount]) {
+					// Find way to use other colours...
+					DrawQuad(new Rect(0, 180+(thrCount*60), 140, 60), Color.white);
+				}
+				else {
+					DrawQuad(new Rect(0, 180+(thrCount*60), 140, 60), Color.grey);
+				}
 				DrawQuad(new Rect(20, 200+(thrCount*60), 100, 30), Color.black);
 				float value = thrusters.PortThrusterValues[thrCount];
 				if(value != 0) {
@@ -97,12 +134,20 @@ public class HUD : MonoBehaviour {
 
 		// Draw starboard thrusters HUD
 		thrCount = 0;
+		DrawQuad(new Rect(Screen.width-140, 160, 140, 20), Color.gray);
+		GUI.Label(new Rect(Screen.width-140, 160, 140, 20), "Starboard thrusters");
 		foreach(GameObject thruster in thrusters.StarboardThrusters) {
 			if(thruster == null) {
 				break;
 			}
 			else {
-				DrawQuad(new Rect(Screen.width-140, 180+(thrCount*60), 140, 60), Color.grey);
+				if(highlightStarboard[thrCount]) {
+					// Find way to use other colours...
+					DrawQuad(new Rect(Screen.width-140, 180+(thrCount*60), 140, 60), Color.white);
+				}
+				else {
+					DrawQuad(new Rect(Screen.width-140, 180+(thrCount*60), 140, 60), Color.grey);
+				}
 				DrawQuad(new Rect(Screen.width-120, 200+(thrCount*60), 100, 30), Color.black);
 				float value = thrusters.StarboardThrusterValues[thrCount];
 				if(value != 0) {
@@ -120,7 +165,13 @@ public class HUD : MonoBehaviour {
 				break;
 			}
 			else {
-				DrawQuad(new Rect(0+(thrCount*50), 0, 50, 140), Color.grey);
+				if(highlightTop[thrCount]) {
+					// Find way to use other colours...
+					DrawQuad(new Rect(0+(thrCount*50), 0, 50, 140), Color.white);
+				}
+				else {
+					DrawQuad(new Rect(0+(thrCount*50), 0, 50, 140), Color.grey);
+				}
 				DrawQuad(new Rect(10+(thrCount*50), 20, 30, 100), Color.black);
 				float value = thrusters.TopThrusterValues[thrCount];
 				if(value != 0) {
@@ -130,6 +181,7 @@ public class HUD : MonoBehaviour {
 			}
 			thrCount++;
 		}
+		GUI.Label (new Rect( (thrCount * 25)-40, 120, 100, 20), "Top thrusters");
 	}
 
 	// This function courtesy of kblood, from 
@@ -140,5 +192,58 @@ public class HUD : MonoBehaviour {
 		texture.Apply();
 		GUI.skin.box.normal.background = texture;
 		GUI.Box(position, GUIContent.none);
+	}
+
+	void HighlightThruster(string thrusterName) {
+		string[] split = thrusterName.Split('_');
+		string position = split[0];
+		int number = int.Parse(split[1]);
+		switch(position){
+			case("AftThruster"):
+				highlightAft[number]=true;
+				break;
+			case("BowThruster"):
+				highlightBow[number]=true;
+				break;
+			case("KeelThruster"):
+				highlightKeel[number]=true;
+				break;
+			case("PortThruster"):
+				highlightPort[number]=true;
+				break;
+			case("StarboardThruster"):
+				highlightStarboard[number]=true;
+				break;
+			case("TopThruster"):
+				highlightTop[number]=true;
+				break;
+		}
+	}
+
+	void UnHighlightThruster(string thrusterName) {
+
+		string[] split = thrusterName.Split('_');
+		string position = split[0];
+		int number = int.Parse(split[1]);
+		switch(position){
+			case("AftThruster"):
+				highlightAft[number]=false;
+				break;
+			case("BowThruster"):
+				highlightBow[number]=false;
+				break;
+			case("KeelThruster"):
+				highlightKeel[number]=false;
+				break;
+			case("PortThruster"):
+				highlightPort[number]=false;
+				break;
+			case("StarboardThruster"):
+				highlightStarboard[number]=false;
+				break;
+			case("TopThruster"):
+				highlightTop[number]=false;
+				break;
+		}
 	}
 }

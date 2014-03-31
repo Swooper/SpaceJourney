@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Thrusters : MonoBehaviour {
@@ -93,8 +93,6 @@ public class Thrusters : MonoBehaviour {
 
 	void OnGUI () {
 		// Af einhverjum astæðum þarf þessi koði að vera her en ekki i Update()
-		// Virkar, en incrementar tvisvar i hvert skipti, þ.e. fer ur 0.0 i 0.5 en ekki 0.25 eins og það ætti að gera
-		// Saurblöndulausn: Breyta Increase og DecreaseThrust föllunum svo þau bæti bara 0.125 við? :P
 		Event e = Event.current;
 		if (e.isKey && e.type == EventType.KeyUp) {
 			switch (e.keyCode) {

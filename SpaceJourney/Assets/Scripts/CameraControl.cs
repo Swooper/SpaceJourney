@@ -17,6 +17,8 @@ public class CameraControl : MonoBehaviour {
     public float scrollMinLimit = 2.0f; // The minimum allowed scroll distance
     public float scrollMaxLimit = 20.0f;// The maximum allowed scroll distance
 
+	private GameObject HUD;
+
 	// Use this for initialization
 	void Start () {
         this.spaceShip = GameObject.Find("SpaceShip");
@@ -26,6 +28,8 @@ public class CameraControl : MonoBehaviour {
         // Make the rigid body not change rotation
         if (rigidbody)
             rigidbody.freezeRotation = true;
+
+		HUD = GameObject.Find("HUD Manager");
 	}
 
 	void Update() {
@@ -39,7 +43,8 @@ public class CameraControl : MonoBehaviour {
 		if (Physics.Raycast(selected, out hit, 100.0f))
 		{
 			if (hit.collider.tag == "Thruster") {
-				GUI.Button(new Rect(10, 70, 500, 30), hit.collider.gameObject.name);
+				GUI.Button(new Rect(Screen.width/2 - 70, 145, 140, 30), hit.collider.gameObject.name);
+				HUD.SendMessage("HighlightThruster", hit.collider.gameObject.name);
 			}
 		}
 	}
