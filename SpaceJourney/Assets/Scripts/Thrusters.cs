@@ -24,10 +24,10 @@ public class Thrusters : MonoBehaviour {
     public float[] TopThrusterScales;
 
 	public float Scale;
+	public AudioClip ThrusterSound;
 
 	private enum ThrusterTypes {AFT_TH, BOW_TH, KEEL_TH, PORT_TH, STARBOARD_TH, TOP_TH};
-
-	private int maxThrusters;
+	public int maxThrusters;
 
 	// Use this for initialization
 	void Start () {
@@ -714,6 +714,9 @@ public class Thrusters : MonoBehaviour {
                 }
 				break;
 		}
+		//audio.clip = ThrusterSound;
+		//audio.loop = true;
+		AudioSource.PlayClipAtPoint(ThrusterSound, transform.position);
 	}
 	
 	void DecreaseThrust(ThrusterTypes thrusterTypes, int i) {

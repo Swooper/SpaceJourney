@@ -233,6 +233,16 @@ public class HUD : MonoBehaviour {
 		string position = split[0];
 		int number = int.Parse(split[1]);
 		switch(position){
+			case("all"):
+				for(int i = 0; i<thrusters.maxThrusters; i++) {
+					highlightAft[i] = false;
+					highlightBow[i] = false;
+					highlightKeel[i] = false;
+					highlightPort[i] = false;
+					highlightStarboard[i] = false;
+					highlightTop[i] = false;
+				}
+				break;
 			case("AftThruster"):
 				highlightAft[number]=false;
 				break;
